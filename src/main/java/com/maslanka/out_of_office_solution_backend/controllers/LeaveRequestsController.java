@@ -27,5 +27,11 @@ public class LeaveRequestsController {
         return ResponseEntity.ok().body("");
     }
 
+    //Get: Sort-Filter
+    // Search by name
+    // Approve/Reject
+    // Create Request
+    // Update Request
+
 
 }

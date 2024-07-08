@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Lists/Employees")
+@RequestMapping("/Lists/employees")
 public class EmployeesController {
 
     @GetMapping()
@@ -22,9 +22,17 @@ public class EmployeesController {
         return ResponseEntity.ok().body("");
     }
 
-    @PatchMapping()
-    public ResponseEntity<?> assignToProject(){
-        return ResponseEntity.ok().body("");
-    }
+
+    //Get - filter
+
+    //Search by name
+
+    //Add
+
+    //Update
+
+    //Deactivate
+
+    //Assign to project
 
 }
