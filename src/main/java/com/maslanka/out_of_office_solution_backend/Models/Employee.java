@@ -12,18 +12,18 @@ public class Employee {
     private SubdivisionEnum subdivision;
     private PositionEnum position;
     private EmployeeStatusEnum employeeStatus;
-    private int peoplePartner; // FK Single choice from the “Employee” table with “HR Manager” position
+    private Integer peoplePartner; // FK Single choice from the “Employee” table with “HR Manager” position
     private int outOfOfficeBalance; //Number of available day-offs
-    private int photo;
+    private Integer photo;
 
     public void setId(int id){ this.id = id; }
     public void setFullName(String fullName){ this.fullName = fullName; }
     public void setSubdivision(int subdivision){ this.subdivision = SubdivisionEnum.values()[subdivision]; }
     public void setPosition(int position){ this.position = PositionEnum.values()[position];}
     public void setEmployeeStatus(int employeeStatus){ this.employeeStatus = EmployeeStatusEnum.values()[employeeStatus];}
-    public void setPeoplePartner(int peoplePartner){ this.peoplePartner = peoplePartner; }
+    public void setPeoplePartner(Integer peoplePartner){ this.peoplePartner = peoplePartner; }
     public void setOutOfOfficeBalance(int outOfOfficeBalance){ this.outOfOfficeBalance = outOfOfficeBalance;}
-    public void setPhoto(int photo){this.photo = photo;}
+    public void setPhoto(Integer photo){this.photo = photo;}
 
     public int getId() {
         return id;
@@ -45,7 +45,7 @@ public class Employee {
         return employeeStatus;
     }
 
-    public int getPeoplePartner() {
+    public Integer getPeoplePartner() {
         return peoplePartner;
     }
 
@@ -53,7 +53,7 @@ public class Employee {
         return outOfOfficeBalance;
     }
 
-    public int getPhoto() {
+    public Integer getPhoto() {
         return photo;
     }
 }

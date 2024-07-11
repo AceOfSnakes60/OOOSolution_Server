@@ -19,7 +19,7 @@ public class EmployeeRepository {
     private JdbcTemplate jdbcTemplate;
 
     //Get - filter
-    public List<Employee> getLeaveRequests(){
+    public List<Employee> getEmployees(){
         StringBuilder query = new StringBuilder("SELECT * FROM employee WHERE 1=1");
         return jdbcTemplate.query(query.toString(), new EmployeeRepository.EmployeeRowMapper());
     }
@@ -31,9 +31,9 @@ public class EmployeeRepository {
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
                 employee.getFullName(),
-                employee.getSubdivision(),
-                employee.getPosition(),
-                employee.getEmployeeStatus(),
+                employee.getSubdivision().ordinal(),
+                employee.getPosition().ordinal(),
+                employee.getEmployeeStatus().ordinal(),
                 employee.getPeoplePartner(),
                 employee.getOutOfOfficeBalance(),
                 employee.getPhoto());
@@ -55,9 +55,9 @@ public class EmployeeRepository {
             employee.setSubdivision(resultSet.getInt("subdivision"));
             employee.setPosition(resultSet.getInt("position"));
             employee.setEmployeeStatus(resultSet.getInt("employeestatus"));
-            employee.setPeoplePartner(resultSet.getInt("peoplepartner"));
+            employee.setPeoplePartner(resultSet.getObject("peoplepartner")!=null?resultSet.getInt("peoplepartner"): -1);
             employee.setOutOfOfficeBalance(resultSet.getInt("outofofficebalance"));
-            employee.setPhoto(resultSet.getInt("photo"));
+            employee.setPhoto(resultSet.getObject("photo")!=null?resultSet.getInt("photo"):-1);
 
             return employee;
         }

@@ -20,7 +20,7 @@ public class ProjectRepository {
 
     //Sort/filter/search
     public List<Project> getProjects(){
-        StringBuilder query = new StringBuilder("SELECT * FROM projects WHERE 1=1");
+        StringBuilder query = new StringBuilder("SELECT * FROM project WHERE 1=1");
 
         return jdbcTemplate.query(query.toString(), new ProjectRowMapper());
     }
