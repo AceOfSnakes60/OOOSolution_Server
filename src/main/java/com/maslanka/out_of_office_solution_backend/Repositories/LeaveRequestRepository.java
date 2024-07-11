@@ -40,11 +40,11 @@ public class LeaveRequestRepository {
                 "VALUES (?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
                 leaveRequest.getEmployee(),
-                leaveRequest.getAbsenceReason(),
+                leaveRequest.getAbsenceReason().ordinal(),
                 leaveRequest.getStartDate(),
                 leaveRequest.getEndDate(),
                 leaveRequest.getComment(),
-                leaveRequest.getApprovalStatus());
+                leaveRequest.getApprovalStatus().ordinal());
     }
 
     // Update Request

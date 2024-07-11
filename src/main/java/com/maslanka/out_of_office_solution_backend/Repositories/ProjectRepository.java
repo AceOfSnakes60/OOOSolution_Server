@@ -38,12 +38,12 @@ public class ProjectRepository {
         String sql = "INSERT INTO project(projecttype, startdate, enddate, manager, comment, projectstatus) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
-                project.getProjectType(),
+                project.getProjectType().ordinal(),
                 project.getStartDate(),
                 project.getEndDate(),
                 project.getManager(),
                 project.getComment(),
-                project.getProjectStatus());
+                project.getProjectStatus().ordinal());
     }
 
     public void deactivateProject(int id){

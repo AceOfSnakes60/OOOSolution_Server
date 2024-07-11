@@ -43,9 +43,11 @@ public class Project {
     }
 
     public void setProjectType(int projecttype) {
+        this.projectType = ProjectTypeEnum.values()[projecttype];
     }
 
     public void setProjectStatus(int projectstatus) {
+        this.projectStatus = ProjectStatusEnum.values()[projectstatus];
     }
 
     public Date getStartDate() {

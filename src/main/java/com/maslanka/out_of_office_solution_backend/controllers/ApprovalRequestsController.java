@@ -3,6 +3,7 @@ package com.maslanka.out_of_office_solution_backend.controllers;
 
 import com.maslanka.out_of_office_solution_backend.Models.ApprovalRequest;
 import com.maslanka.out_of_office_solution_backend.Repositories.ApprovalRequestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Lists/ApprovalRequests")
 public class ApprovalRequestsController {
 
+    @Autowired
     private ApprovalRequestRepository approvalRequestRepository;
     @GetMapping()
     public ResponseEntity<?> getApprovalRequests(){

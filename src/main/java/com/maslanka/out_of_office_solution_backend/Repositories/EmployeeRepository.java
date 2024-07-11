@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class EmployeeRepository {
@@ -19,9 +21,26 @@ public class EmployeeRepository {
     private JdbcTemplate jdbcTemplate;
 
     //Get - filter
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees(Map<String, String> params){
+
+        String name = params.get("fullName");
+        String sortBy = params.getOrDefault("sortBy", "id");
+        String sortOrder = params.getOrDefault("sortOrder", "asc");
+        //int page = params.containsKey("page") ? Integer.valueOf(params.get("page")) : 0;
+        //int size = params.containsKey("size") ? Integer.valueOf(params.get("size")) : 10;
+
         StringBuilder query = new StringBuilder("SELECT * FROM employee WHERE 1=1");
-        return jdbcTemplate.query(query.toString(), new EmployeeRepository.EmployeeRowMapper());
+        List<Object> queryParams = new ArrayList<>();
+
+        if(name != null){
+            query.append(" AND name = ?");
+            queryParams.add(name);
+        }
+
+        query.append(" ORDER BY ").append(sortBy).append(" ").append(sortOrder);
+        //query.append(" LIMIT ").append(size).append(" OFFSET ").append(page * size);
+
+        return jdbcTemplate.query(query.toString(), queryParams.toArray(), new EmployeeRepository.EmployeeRowMapper());
     }
     //Search by name
 

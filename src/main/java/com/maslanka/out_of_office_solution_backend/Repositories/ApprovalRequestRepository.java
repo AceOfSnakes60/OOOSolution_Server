@@ -22,11 +22,6 @@ public class ApprovalRequestRepository {
         return jdbcTemplate.query(sql, new approvalRequestRowMapper());
     }
 
-    //Sort/filter/search
-    //open with details
-
-
-    //Approve or reject Request
     public void changeApprovalRequestStatus(ApprovalStatusEnum newStatus, int id){
         jdbcTemplate.update("UPDATE approvalrequest SET approvalstatus = ? WHERE id = ?", newStatus, id);
     }
@@ -34,13 +29,12 @@ public class ApprovalRequestRepository {
     //Create approval
     public int addApprovalRequest(ApprovalRequest approvalRequest){
         String sql = "INSERT INTO approvalrequest(approver, leaverequest, approvalstatus, comment) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
                 approvalRequest.getApprover(),
                 approvalRequest.getLeaveRequest(),
-                approvalRequest.getApprovalStatus(),
-                approvalRequest.getComment(),
-                approvalRequest.getApprovalStatus());
+                approvalRequest.getApprovalStatus().ordinal(),
+                approvalRequest.getComment());
     }
 
     private final class approvalRequestRowMapper implements RowMapper<ApprovalRequest> {

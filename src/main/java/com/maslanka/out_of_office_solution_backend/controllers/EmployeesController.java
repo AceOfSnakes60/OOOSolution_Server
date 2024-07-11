@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Lists/employees")
@@ -16,8 +17,10 @@ public class EmployeesController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping()
-    public ResponseEntity<?> getEmployees(){
-        List<Employee> employeeList = employeeRepository.getEmployees();
+    public ResponseEntity<?> getEmployees(
+            @RequestParam Map<String, String> allParams
+    ){
+        List<Employee> employeeList = employeeRepository.getEmployees(allParams);
 
         return ResponseEntity.ok().body(employeeList);
     }
@@ -36,16 +39,5 @@ public class EmployeesController {
     }
 
 
-    //Get - filter
-
-    //Search by name
-
-    //Add
-
-    //Update
-
-    //Deactivate
-
-    //Assign to project
 
 }
